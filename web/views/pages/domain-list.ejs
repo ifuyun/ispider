@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    * {
+      color: #333;
+      font-size: 14px;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    th, td {
+      border: 1px solid #666;
+      padding: 4px 6px;
+    }
+    .price {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<table>
+  <tr>
+    <th>序号</th>
+    <th>域名</th>
+    <th>描述</th>
+    <th>价格</th>
+  </tr>
+  <? domains.forEach(function(domain, idx){ ?>
+  <tr>
+    <td><?- idx + 1 ?></td>
+    <td><?- domain.name ?></td>
+    <td><?- domain.description ?></td>
+    <td class="price"><?- domain.price ?></td>
+  </tr>
+  <? }) ?>
+</table>
+</body>
+</html>

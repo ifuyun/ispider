@@ -7,7 +7,9 @@ import * as compress from 'compression';
 import * as ejs from 'ejs';
 import { Request, Response } from 'express';
 import * as log4js from 'log4js';
+import * as favicon from 'serve-favicon';
 import { cpus } from 'os';
+import { join } from 'path';
 import { AppModule } from './app.module';
 import { LogLevel } from './common/common.enum';
 import { LoggerService } from './modules/logger/logger.service';
@@ -49,6 +51,10 @@ async function bootstrap() {
     app.use(bodyParser.json({ limit: '2mb' }));
     app.use(bodyParser.urlencoded({ extended: true }));
     app.enable('trust proxy');
+
+    app.use(favicon(join(__dirname, '..', 'web', 'assets', 'images', 'favicon.ico')));
+    app.useStaticAssets(join(__dirname, '..', 'web', 'assets'));
+    app.setBaseViewsDir(join(__dirname, '..', 'web', 'views'));
 
     app.use((req: Request, res: Response, next: () => void) => {
       logger.updateContext();

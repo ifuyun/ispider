@@ -6,6 +6,7 @@ import ENV_CONFIG from './config/env.config';
 import { AllExceptionsFilter } from './filters/all-exceptions.filter';
 import { LoggerService } from './modules/logger/logger.service';
 import { MainModule } from './modules/main/main.module';
+import { DomainModule } from './modules/domain/domain.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { MainModule } from './modules/main/main.module';
       envFilePath: `env/${process.env.ENV}.env`,
       load: [ENV_CONFIG, APP_CONFIG]
     }),
-    MainModule
+    MainModule,
+    DomainModule
   ],
   controllers: [],
   providers: [
